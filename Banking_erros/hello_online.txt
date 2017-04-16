@@ -1,0 +1,36 @@
+package com.onlinebanking;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+
+
+
+//Sets the path to base URL + /hello
+@Path("/hello")
+public class Hello {
+
+  // This method is called if TET_PLAIN is request
+  @GET
+  
+  public String sayPlainTextHelloo(() {
+    return "Hello Jersey";
+  }
+
+  // This method is called if XML is request
+  @GET
+  
+  public String sayXMLHello() {
+    return "<hello> Hello Jersey" + "</hello>";
+  }
+
+  // This method is called if HTML is request
+  @GET
+
+  public String sayHtmlHello() {
+    return "<html> " + "<title>" + "Hello Jersey" + "</title>"
+        + "<body><h1>" + "Hello Jersey" + "</body></h1>" ;
+  }
+
+}

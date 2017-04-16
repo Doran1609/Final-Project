@@ -1,0 +1,42 @@
+package com.onlinebanking;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+
+
+@Path("/home")
+public class Home{
+
+	 @GET
+	  @Produces(MediaType.TEXT_PLAIN)
+	  public String sayPlainTextHome() {
+	    return"Welcome to AIB BANK Home Page";
+	  }
+
+	  // This method is called if XML is request
+	  @GET
+	
+	  public String sayXMLHome() {
+	    return "<?xml version=\"1.0\"?>" + "<hello> Welcome to AIB BANK Home Page" + "</hello>";
+	  }
+
+	  // This method is called if HTML is request
+	  @GET
+
+	  public String getHTMLOnlineInfo() {
+	    return "<html> " + "<title>" + "AIB Bank" + "</title>"
+	        + "<body><h1>" + "Welcome to AIB BANK Home Page" + "</body></h1>" + "</html> ";
+	  }
+	  
+	  @PUT
+	  @Path("{CustomerId}")
+	
+	  public String updateCustomerInfo(@PathParam("CustomerId") String CustomerId)
+	  {
+		  //Code to update customer record using customerid
+		  return "Done";
+	  }
+
+
+}
