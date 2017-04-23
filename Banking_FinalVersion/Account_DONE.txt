@@ -1,0 +1,56 @@
+Account.java
+
+BankSystem.bean
+
+
+package com.banksystem.BankSystem.bean;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Account extends Customer{
+	
+	private int Accountid;
+	private int Balance;
+	
+
+	public Account() {
+		// TODO Auto-generated constructor stub
+		
+		
+	}
+
+	
+	public Account(int id, int Balance) {
+		// TODO Auto-generated constructor stub
+		this.Accountid=id;
+		this.Balance=Balance;
+		
+	}
+
+	public Account(int id, int Balance, long custid) {
+		// TODO Auto-generated constructor stub
+		this.Accountid=id;
+		this.Balance=Balance;
+		super.id= custid;
+	}
+
+	
+	public int getAccountid() {
+		return Accountid;
+	}
+
+	public void setAccountid(int accountid) {
+		Accountid = accountid;
+	}
+	
+	public int getBalance() {
+		return Balance;
+	}
+
+	public void setBalance(int balance) {
+		Balance = balance;
+	}
+
+
+}

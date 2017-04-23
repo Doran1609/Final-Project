@@ -1,0 +1,80 @@
+AccountService.java
+
+BankSystem.bean
+
+
+package com.banksystem.BankSystem.bean;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+//import org.koushik.javabrains.messenger.database.DatabaseClass;
+public class AccountService {
+
+	private Map<Long, Account> acc = DatabaseClass.getAccounts();
+	private Map<Long, Transactions> trans = DatabaseClass.getTransactions();
+	
+	public AccountService() {
+		acc.put(1L, new Account(1,1000));
+		acc.put(2L, new Account(2,2000));
+		acc.put(3L, new Account(2,2000,1));
+	}
+	
+	public List<Transactions> getAllTransactions() {
+		//Map<Long, Account> acc
+		return new ArrayList<Transactions>(trans.values()); 
+	}
+
+	public List<Account> getAllAccounts() {
+		//Map<Long, Account> acc
+		return new ArrayList<Account>(acc.values()); 
+	}
+	
+	public List<Account> getAccountidbyCust(long id)
+	{
+		ArrayList<Account> accountbycust = new ArrayList<Account>();
+		for (long key : acc.keySet()) {
+			if(( acc.get(key).equals(id)))
+					{
+					accountbycust.add(accountbycust.size()+1, (Account)(acc.get(key)));
+			}
+		}
+		return accountbycust;
+	}
+	
+	public Account getAccount(long id) {
+		return acc.get(id);
+	}
+
+
+	public boolean getAccountLodge(long accountId, int amount) {
+		// TODO Auto-generated method stub
+		
+		int balance=acc.get(accountId).getBalance();
+		balance=balance+amount;
+		acc.get(accountId).setBalance(balance);
+		System.out.println("balance"+acc.get(accountId).getBalance());
+		trans.put(1L, new Transactions(accountId,amount,"lodge"));
+		return true;
+	}
+	
+
+	public boolean getAccountWithdraw(long accountId, int amount) {
+		// TODO Auto-generated method stub
+		
+		int balance=acc.get(accountId).getBalance();
+		balance-=amount;
+		if(balance>0)
+		{
+		acc.get(accountId).setBalance(balance);
+		trans.put(2L, new Transactions(accountId,amount,"withdraw"));
+		return true;
+		}
+		else 
+			return false;
+	}
+	
+
+	
+}

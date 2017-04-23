@@ -1,0 +1,38 @@
+CustomerService.java
+
+BankSystem.bean
+
+
+package com.banksystem.BankSystem.bean;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+//import 
+//import org.koushik.javabrains.messenger.database.DatabaseClass;
+public class CustomerService {
+
+	private Map<Long, Customer> customer = DatabaseClass.getCustomers();
+	
+	public CustomerService() {
+		customer.put(1L, new Customer(1, "Waleed Sajid", "Dublin","11"));
+		customer.put(2L, new Customer(2, "Leonardo", "US","22"));
+	}
+	
+	
+	public List<Customer> getAllMessages() {
+		return new ArrayList<Customer>(customer.values()); 
+	}
+	
+	public Customer getCustomer(long id) {
+		return customer.get(id);
+	}
+	
+	public Customer addCustomer(Customer cust) {
+		 cust.setId(customer.size() + 1);
+		customer.put(cust.getId(), cust);
+		return cust;
+	}
+
+
+}
